@@ -15,7 +15,7 @@ then
 
 `make`
 
-## Put PHP script to your PHP/Webserver , and get the valid URL , suck as:
+## Put PHP script to your PHP/Webserver , and get the valid URL , such as:
 
 http://localhost/httpdns.php
 
