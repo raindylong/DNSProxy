@@ -15,9 +15,13 @@ then
 
 `make`
 
-## Put PHP script to your PHP/Webserver , and get the valid URL , such as:
+## Process
 
+Put PHP script to your PHP/Webserver , and get the valid URL , such as:
 http://localhost/httpdns.php
+
+The process
+[dns client] ---> [dnsproxy] ----> [httpserver] ----> [dnspod-httpdns]
 
 ## Usage 
 
@@ -86,6 +90,9 @@ www.google.com.		3600	IN	A	173.194.64.106
 ```
 
 ## Changelog:
+
+Version 0.5 - 20150708
+* Add httpdns.php support dnspod-httpdns
 
 Version 0.5 - May 17 2013:
 * Add proxy authentication support
