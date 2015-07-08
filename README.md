@@ -15,6 +15,10 @@ then
 
 `make`
 
+## Put PHP script to your PHP/Webserver , and get the valid URL , suck as:
+
+http://localhost/httpdns.php
+
 ## Usage 
 
 If you have one http_proxy , just run like that:
