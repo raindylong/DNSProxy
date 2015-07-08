@@ -17,9 +17,15 @@ then
 
 ## Usage 
 
+If you have one http_proxy , just run like that:
 ```bash
-dnsp -l 127.0.0.1 -h 10.0.0.2 -r 8080 -s http://www.andreafabrizi.it/nslookup.php
+dnsp -l 127.0.0.1 -h 127.0.0.1 -r 3128 -s http://localhost/httpdns.php
 ```
+or
+```bash
+dnsp -l 127.0.0.1 -s http://localhost/httpdns.php
+```
+
 In this case, DNS proxy listens on port 53 (bind on 127.0.0.1) and sends the
 requests to external script through the 10.0.0.2:8080 proxy.
 

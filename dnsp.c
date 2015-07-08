@@ -360,7 +360,7 @@ char *lookup_host(const char *host, const char *proxy_host, unsigned int proxy_p
     script_url = malloc(URL_SIZE);
     http_response = malloc(HTTP_RESPONSE_SIZE);
     bzero(script_url, URL_SIZE);
-    snprintf(script_url, URL_SIZE-1, "%s/?host=%s", lookup_script, host);
+    snprintf(script_url, URL_SIZE-1, "%s?domain=%s", lookup_script, host);
     
     /* curl setup */
     ch = curl_easy_init();
@@ -403,6 +403,15 @@ char *lookup_host(const char *host, const char *proxy_host, unsigned int proxy_p
     free(script_url);
     
     return http_response;
+    /*
+        char *c1 = http_response;
+        char *c2 = NULL;
+    c2 = strtok(c1,";");
+    while(c2){
+            c2 = strtok( NULL, "," );
+    }
+    return c1;
+    */
 }
 
 /*
@@ -490,7 +499,8 @@ int main(int argc, char *argv[])
         abort ();
     }
 
-    if ((port == 0) || (proxy_port == 0) || (bind_address == NULL) || (proxy_host == NULL) || (lookup_script == NULL))
+   // if ((port == 0) || (proxy_port == 0) || (bind_address == NULL) || (proxy_host == NULL) || (lookup_script == NULL))
+   if ((port == 0) || (bind_address == NULL) || (lookup_script == NULL))
         usage();
 
     debug_msg("Starting DNS proxy v%s (DEBUG mode enabled!)\n", VERSION);
@@ -546,6 +556,7 @@ int main(int argc, char *argv[])
             /* Please, don't resolve the matching hosts :) */
             if (strstr(dns_req->hostname, ".example.com") == NULL) {
                 ip = lookup_host(dns_req->hostname, proxy_host, proxy_port, proxy_user, proxy_pass, lookup_script);
+
                 if (ip != NULL) {
                     debug_msg("Hostname resolved: %s\n", ip);
                     build_dns_reponse(sockfd, client, dns_req, ip, DNS_MODE_ANSWER);
