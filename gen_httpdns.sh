@@ -1,7 +1,7 @@
 #########################################################################
-# File Name: getlocal.sh
-# Author: ma6174
-# mail: ma6174@163.com
+# File Name: gen_httpdns.sh
+# Author: raindylong
+# mail: longweijin@gmail.com
 # Created Time: Wed 08 Jul 2015 01:56:31 PM CST
 #########################################################################
 #!/bin/bash
