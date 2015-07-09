@@ -54,7 +54,7 @@ if (array_key_exists("$domain", $search_array)) {
 
 }
 
-
+//// 去 dnspod httpdns拿一次dns结果
 $html = file_get_contents("http://119.29.29.29/d?dn=$domain");
 
 if(!$html){
@@ -67,14 +67,13 @@ function wdomain($ip,$string){
         fclose($fp);
 }
 
+////如果有多个结果，只取第一个IP
 $array = explode(";",$html);
 if( isset($array[1]) && ($array[1] != "") ){
-        wdomain($array[1],$domain);
-        print_r($array[1]);
+	$html = $array[1];
 }
-else{
-        wdomain($html,$domain);
+
+        wdomain($html,$domain); //写入domain目录中
 	print_r($html);
-}
 
 ?>
