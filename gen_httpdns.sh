@@ -12,7 +12,7 @@ cat dns_header.php > dns_tmp.php
 
 if [ ! -d ${domain_tmpdir} ] ; then
 	mkdir -p ${domain_tmpdir}
-	chmod -fR 777 ${domain_tmpdir}
+	chmod -fR 777 ${domain_tmpdir} ## 让php能写入此目录
 	touch ${domain_tmp}/domain.txt
 fi
 
