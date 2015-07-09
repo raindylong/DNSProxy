@@ -7,8 +7,12 @@
 ## 安装步骤
 
 ### 编译dnsp
+
 如果是Ubuntu/Debain:
+
 `apt-get install libcurl4-openssl-dev`
+
+然后
 `make`
 
 ### 把httpdns.php放入你的PHP/Webserver环境中
@@ -18,7 +22,7 @@
 
 ### 启动dnsp
 
-nohup dnsp -l 127.0.0.1 -s http://localhost/httpdns.php &
+`nohup dnsp -l 127.0.0.1 -s http://localhost/httpdns.php &`
 
 ### 如果想实现简单缓存
 
