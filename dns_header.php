@@ -1,6 +1,5 @@
 <?php
-// 获取链接的HTML代码
-//
+
 $domain = $_GET["domain"];
 
 $domain = str_replace("http://","", $domain) ;
