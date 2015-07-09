@@ -1,3 +1,35 @@
+# 中文版说明
+
+## 流程
+
+[dns客户端]--->[dnsp进程]--->[httpdns]--->[dnspod-httpdns]
+
+## 安装步骤
+
+### 编译dnsp
+如果是Ubuntu/Debain:
+`apt-get install libcurl4-openssl-dev`
+`make`
+
+### 把httpdns.php放入你的PHP/Webserver环境中
+
+得到一个可用的URL，例如：http://localhost/httpdns.php
+
+
+### 启动dnsp
+
+nohup dnsp -l 127.0.0.1 -s http://localhost/httpdns.php &
+
+### 如果想实现简单缓存
+
+把gen_httpdns.sh放入crontab中执行，定时生成新的httpdns.php文件，并copy到你的webroot目录中（需要自行修改一下脚本）
+
+`*/15 * * * * ( cd /home/httpdns ; ./gen_httpdns.sh >/dev/null )`
+
+
+
+--------------------------------------------------------------------------------
+
 # DNS Proxy
 
 DNS proxy listens for incoming DNS requests on the local interface and 
