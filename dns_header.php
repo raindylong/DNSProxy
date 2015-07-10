@@ -4,6 +4,13 @@ $domain = $_GET["domain"];
 
 $domain = str_replace("http://","", $domain) ;
 
+
+// 如果是DNS反向解析请求，直接返回一个域名
+$arpa = explode("-",$domain);
+if ( $arpa[count($arpa)-1] == "addr.arpa." ){
+        print_r("addr.arpa.ejoy.com");exit;
+}
+
 $domain = str_replace(":","", $domain) ;
 $domain = str_replace("&","", $domain) ;
 $domain = str_replace(";","", $domain) ;
