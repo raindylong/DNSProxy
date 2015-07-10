@@ -2,7 +2,7 @@
 
 
 //$domain = $_GET["domain"];
-$domain = argv[1] ;
+$domain = $argv[1] ;
 
 $domain = str_replace("http://","", $domain) ;
 
