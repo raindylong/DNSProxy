@@ -24,7 +24,7 @@ if [ ${WCC} -ge 4000 ] ; then
 
 fi
 
-cat /etc/hosts ${domain_tmpdir}/*.txt | awk '{ print $1" "$2}' | sort | uniq | \
+cat /etc/hosts ${domain_tmpdir}/*.txt | grep -v "^#" | awk '{ print $1" "$2}' | sort | uniq | \
 	 awk '{ if(NF=2){ print "\""$2".\"=>\""$1"\"," } }' | sed "s/\.\././g" >> dns_tmp.php
 
 cat dns_footer.php >> dns_tmp.php
