@@ -16,13 +16,25 @@ if [ ! -d ${domain_tmpdir} ] ; then
 	touch ${domain_tmpdir}/domain.txt
 fi
 
+
+####### 如果cache数量大于4000，就每次删除1000
 ls -ltr /tmp/domain/* | awk '{print $NF}' > /tmp/domain_dnsproxy.txt
 WCC=`wc -l /tmp/domain_dnsproxy.txt | awk '{print $1}'`
 
 if [ ${WCC} -ge 4000 ] ; then
 	head -1000 /tmp/domain_dnsproxy.txt | xargs rm 
-
 fi
+####
+
+
+### 每次都删除一定比例的domain cache
+ls -ltr /tmp/domain/* | awk '{print $NF}' > /tmp/domain_dnsproxy.txt
+WCC=`wc -l /tmp/domain_dnsproxy.txt | awk '{print $1}'`
+delwc=`echo "${WCC} / 72.5" | bc`
+if [ ${delwc} -ne 0 ] ; then
+        head -${delwc} /tmp/domain_dnsproxy.txt | xargs rm
+fi
+#######
 
 #### /etc/hosts放在后，使起在数组中位置靠后，优先级更高
 cat ${domain_tmpdir}/*.txt /etc/hosts | grep -v "^#" | awk '{ print $1" "$2}' |  \
