@@ -11,6 +11,12 @@ if (array_key_exists("$domain", $search_array)) {
 }
 */
 
+function wdomain($ip,$filename,$domain){
+        $fp = fopen("$filename", "w");//文件被清空后再写入
+        $flag=fwrite($fp,"$ip $domain\n");
+        fclose($fp);
+}
+
 if (isset($search_array["$domain"])){
 	print_r($search_array["$domain"]);
         exit;
@@ -19,14 +25,19 @@ if (isset($search_array["$domain"])){
 
 $html = file_get_contents("http://119.29.29.29/d?dn=$domain");
 
+/*
 if(!$html){
         die("");
 }
+*/
 
-function wdomain($ip,$filename,$domain){
-        $fp = fopen("$filename", "w");//文件被清空后再写入
-        $flag=fwrite($fp,"$ip $domain\n");
-        fclose($fp);
+##### 如果dnspod拿不到，记录一次
+if ( $html == "") {
+        wdomain($html,"/tmp/domainerr/".$domain.".txt",$domain);
+        // 用dns query查一次
+        $dnsr = dns_get_record("$domain", DNS_A);
+        //print_r($dnsr);
+        $html=$dnsr[0]["ip"] ;
 }
 
 
