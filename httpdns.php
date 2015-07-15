@@ -78,6 +78,7 @@ if(!$html){
         die("");
 }
 
+//可以用file_put_contents搞定
 function wdomain($ip,$filename,$domain){
         $fp = fopen("$filename", "w");//文件被清空后再写入
         $flag=fwrite($fp,"$ip $domain\n");
