@@ -25,12 +25,11 @@ if (isset($search_array["$domain"])){
 
 $html = file_get_contents("http://119.29.29.29/d?dn=$domain");
 
-/*
 if(!$html){
         die("");
 }
-*/
 
+/*
 ##### 如果dnspod拿不到，记录一次
 if ( $html == "") {
         wdomain($html,"/tmp/domainerr/".$domain.".txt",$domain);
@@ -39,6 +38,7 @@ if ( $html == "") {
         //print_r($dnsr);
         $html=$dnsr[0]["ip"] ;
 }
+*/
 
 
 $array = explode(";",$html);
