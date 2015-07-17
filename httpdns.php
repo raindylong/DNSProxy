@@ -11,6 +11,14 @@ if ( $arpa[count($arpa)-1] == "addr.arpa." ){
         print_r("addr.arpa.ejoy.com");exit;
 }
 
+
+# SOMEGUY-PC._netbios._udp.WORKGROUP.
+
+$workgroup = explode('_netbios._udp.',$domain);
+if ( $workgroup[count($workgroup)-1] == 'WORKGROUP.' ){
+        print_r("127.0.0.1");exit;
+}
+
 $domain = str_replace(":","", $domain) ;
 $domain = str_replace("&","", $domain) ;
 $domain = str_replace(";","", $domain) ;
