@@ -14,8 +14,8 @@ if ( $arpa[count($arpa)-1] == "addr.arpa." ){
 
 # SOMEGUY-PC._netbios._udp.WORKGROUP.
 
-$workgroup = explode('_netbios._udp.',$domain);
-if ( $workgroup[count($workgroup)-1] == 'WORKGROUP.' ){
+$workgroup = explode("_netbios._udp.",$domain);
+if (( $workgroup[1] == 'WORKGROUP.' ) || ( $workgroup[1] == 'WOKRGROUP.' )) {
         print_r("127.0.0.1");exit;
 }
 
