@@ -4,20 +4,21 @@ $domain = $_GET["domain"];
 
 $domain = str_replace("http://","", $domain) ;
 
-
 // 如果是DNS反向解析请求，直接返回一个域名
 $arpa = explode("-",$domain);
 if ( $arpa[count($arpa)-1] == "addr.arpa." ){
         print_r("addr.arpa.ejoy.com");exit;
 }
 
+# SOMEGUY-PC._netbios._udp.WORKGROUP.
 
 # SOMEGUY-PC._netbios._udp.WORKGROUP.
 
-$workgroup = explode('_netbios._udp.',$domain);
-if ( $workgroup[count($workgroup)-1] == 'WORKGROUP.' ){
+$workgroup = explode("_netbios._udp.",$domain);
+if (( $workgroup[1] == 'WORKGROUP.' ) || ( $workgroup[1] == 'WOKRGROUP.' ) || ( $workgroup[1] == 'workgroup.' )) {
         print_r("127.0.0.1");exit;
 }
+
 
 $domain = str_replace(":","", $domain) ;
 $domain = str_replace("&","", $domain) ;
@@ -82,14 +83,25 @@ if (isset($search_array["$domain"])){
 }
 
 
-$html = file_get_contents("http://119.29.29.29/d?dn=$domain");
+//$html = file_get_contents("http://119.29.29.29/d?dn=$domain");
 
-/*
+$ch = curl_init();
+// set url 
+curl_setopt($ch, CURLOPT_URL, "http://119.29.29.29/d?dn=$domain");
+//return the transfer as a string 
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+// $output contains the output string 
+$output = curl_exec($ch);
+// close curl resource to free up system resources 
+curl_close($ch);
+
+$html = $output ;
+
 if(!$html){
         die("");
 }
-*/
 
+/*
 ##### 如果dnspod拿不到，记录一次
 if ( $html == "") {
         wdomain($html,"/tmp/domainerr/".$domain.".txt",$domain);
@@ -98,6 +110,7 @@ if ( $html == "") {
         //print_r($dnsr);
         $html=$dnsr[0]["ip"] ;
 }
+*/
 
 
 $array = explode(";",$html);

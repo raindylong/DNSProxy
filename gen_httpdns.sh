@@ -38,8 +38,8 @@ fi
 #######
 
 #### /etc/hosts放在后，使起在数组中位置靠后，优先级更高
-cat ${domain_tmpdir}/*.txt /etc/hosts | grep -v "^#" | awk '{ print $1" "$2}' |  \
-	 awk '{ if(NF=2){ print "\""$2".\"=>\""$1"\"," } }' | sed "s/\.\././g" >> dns_tmp.php
+#cat ${domain_tmpdir}/*.txt /etc/hosts | grep -v "^#" | awk '{ print $1" "$2}' |  \
+#	 awk '{ if(NF=2){ print "\""$2".\"=>\""$1"\"," } }' | sed "s/\.\././g" >> dns_tmp.php
 
 cat dns_footer.php >> dns_tmp.php
 

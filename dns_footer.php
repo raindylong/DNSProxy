@@ -23,7 +23,19 @@ if (isset($search_array["$domain"])){
 }
 
 
-$html = file_get_contents("http://119.29.29.29/d?dn=$domain");
+//$html = file_get_contents("http://119.29.29.29/d?dn=$domain");
+
+$ch = curl_init();
+// set url 
+curl_setopt($ch, CURLOPT_URL, "http://119.29.29.29/d?dn=$domain");
+//return the transfer as a string 
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+// $output contains the output string 
+$output = curl_exec($ch);
+// close curl resource to free up system resources 
+curl_close($ch);
+
+$html = $output ;
 
 if(!$html){
         die("");
